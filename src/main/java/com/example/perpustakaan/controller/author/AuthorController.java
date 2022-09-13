@@ -32,6 +32,7 @@ public class AuthorController {
         } else {
             authorRepository.save(author);
             response.setStatus(Boolean.TRUE);
+            response.setData(authorDto);
             response.setMessage("Berhasil Simpan Data");
         }
 
