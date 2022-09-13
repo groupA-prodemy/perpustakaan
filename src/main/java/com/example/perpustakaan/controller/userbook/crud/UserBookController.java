@@ -1,0 +1,78 @@
+package com.example.perpustakaan.controller.userbook.crud;
+
+import com.example.perpustakaan.controller.userbook.converter.DtoToEntity;
+import com.example.perpustakaan.controller.userbook.converter.EntityToDto;
+import com.example.perpustakaan.model.dto.DefaultResponse;
+import com.example.perpustakaan.model.dto.UserBookDto;
+import com.example.perpustakaan.model.entity.UserBook;
+import com.example.perpustakaan.repository.UserBookRepository;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/userbook")
+public class UserBookController {
+
+    private final UserBookRepository userBookRepository;
+
+    public UserBookController(UserBookRepository userBookRepository) {
+        this.userBookRepository = userBookRepository;
+    }
+
+    DtoToEntity dtoToEntity = new DtoToEntity();
+    EntityToDto entityToDto = new EntityToDto();
+
+    @GetMapping("/list-userbook")
+    public List<UserBookDto> getListUserBook() {
+        List <UserBookDto> list = new ArrayList<>();
+        for (UserBook u : userBookRepository.findAll()) {
+            list.add(entityToDto.convertEntityToDto(u));
+        }
+        return list;
+    }
+
+    @PostMapping("/add-userbook")
+    public DefaultResponse<UserBookDto> addUserBook (@RequestBody UserBookDto userBookDto) {
+        UserBook userBook = dtoToEntity.convertDtoToEntity(userBookDto);
+        DefaultResponse<UserBookDto> defaultResponse = new DefaultResponse<>();
+        Optional<UserBook> optionalUserBook = userBookRepository.findByUserBookId (userBookDto.getUserBookId());
+        if (optionalUserBook.isPresent()) {
+            defaultResponse.setStatus(Boolean.FALSE);
+            defaultResponse.setMessage("Gagal Menambahkan Pengguna Buku");
+        } else {
+//            userBookRepository.save(userBook);
+            defaultResponse.setStatus(Boolean.TRUE);
+            defaultResponse.setMessage("Data Pengguna Berhasil Ditambahkan");
+            defaultResponse.setData(userBookDto);
+        }
+        return defaultResponse;
+    }
+
+    @PutMapping("/update-userbook/{id}")
+    public DefaultResponse updateUserBookById (@PathVariable Integer UserBookId, @RequestBody UserBookDto userBookDto) {
+        DefaultResponse defaultResponse = new DefaultResponse();
+        try {
+            Optional <UserBook> optionalUserBook = userBookRepository.findByUserBookId(UserBookId);
+            UserBook userBook = optionalUserBook.get();
+            if (optionalUserBook.isPresent()) {
+                userBook.setUserBookId(userBookDto.getUserBookId());
+                userBook.setIdBook(userBookDto.getIdBook());
+                userBook.setIdUser(userBookDto.getIdUser());
+                userBook.setStartDate(userBookDto.getStartDate());
+                userBook.setDueDate(userBookDto.getDueDate());
+                userBook.setIsReturned(userBookDto.getIsReturned());
+//                userBookRepository.save(userBook);
+                defaultResponse.setStatus(Boolean.TRUE);
+                defaultResponse.setData(userBookDto);
+                defaultResponse.setMessage("Data Berhasil Diperbarui");
+            }
+        } catch (Exception e) {
+            defaultResponse.setStatus(Boolean.FALSE);
+            defaultResponse.setMessage("Data Gagal Diperbarui");
+        }
+        return defaultResponse;
+    }
+}
