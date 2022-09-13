@@ -1,11 +1,11 @@
 package com.example.perpustakaan.controller.login.crud;
 
-import com.example.SistemPerpustakaan.model.dto.DefaultResponse;
-import com.example.SistemPerpustakaan.model.dto.LoginDto;
-import com.example.SistemPerpustakaan.model.entity.Admin;
-import com.example.SistemPerpustakaan.model.entity.BookLoaner;
-import com.example.SistemPerpustakaan.repository.AdminRepository;
-import com.example.SistemPerpustakaan.repository.BookLoanerRepository;
+import com.example.perpustakaan.model.dto.DefaultResponse;
+import com.example.perpustakaan.model.dto.LoginDto;
+import com.example.perpustakaan.model.entity.Admin;
+import com.example.perpustakaan.model.entity.BookLoaner;
+import com.example.perpustakaan.repository.AdminRepository;
+import com.example.perpustakaan.repository.BookLoanerRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

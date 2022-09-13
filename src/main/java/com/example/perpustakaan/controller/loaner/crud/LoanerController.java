@@ -1,11 +1,11 @@
 package com.example.perpustakaan.controller.loaner.crud;
 
-import com.example.SistemPerpustakaan.controller.loaner.converter.DtoToEntity;
-import com.example.SistemPerpustakaan.controller.loaner.converter.EntityToDto;
-import com.example.SistemPerpustakaan.model.dto.BookLoanerDto;
-import com.example.SistemPerpustakaan.model.dto.DefaultResponse;
-import com.example.SistemPerpustakaan.model.entity.BookLoaner;
-import com.example.SistemPerpustakaan.repository.BookLoanerRepository;
+import com.example.perpustakaan.controller.loaner.converter.DtoToEntity;
+import com.example.perpustakaan.controller.loaner.converter.EntityToDto;
+import com.example.perpustakaan.model.dto.BookLoanerDto;
+import com.example.perpustakaan.model.dto.DefaultResponse;
+import com.example.perpustakaan.model.entity.BookLoaner;
+import com.example.perpustakaan.repository.BookLoanerRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

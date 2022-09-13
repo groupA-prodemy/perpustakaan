@@ -1,7 +1,7 @@
 package com.example.perpustakaan.controller.loaner.converter;
 
-import com.example.SistemPerpustakaan.model.dto.BookLoanerDto;
-import com.example.SistemPerpustakaan.model.entity.BookLoaner;
+import com.example.perpustakaan.model.dto.BookLoanerDto;
+import com.example.perpustakaan.model.entity.BookLoaner;
 
 public class EntityToDto {
 

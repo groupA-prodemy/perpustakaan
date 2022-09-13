@@ -1,11 +1,11 @@
 package com.example.perpustakaan.controller.admin.crud;
 
-import com.example.SistemPerpustakaan.controller.admin.converter.DtoToEntity;
-import com.example.SistemPerpustakaan.controller.admin.converter.EntityToDto;
-import com.example.SistemPerpustakaan.model.dto.AdminDto;
-import com.example.SistemPerpustakaan.model.dto.DefaultResponse;
-import com.example.SistemPerpustakaan.model.entity.Admin;
-import com.example.SistemPerpustakaan.repository.AdminRepository;
+import com.example.perpustakaan.controller.admin.converter.DtoToEntity;
+import com.example.perpustakaan.controller.admin.converter.EntityToDto;
+import com.example.perpustakaan.model.dto.AdminDto;
+import com.example.perpustakaan.model.dto.DefaultResponse;
+import com.example.perpustakaan.model.entity.Admin;
+import com.example.perpustakaan.repository.AdminRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
