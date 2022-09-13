@@ -1,6 +1,6 @@
 package com.example.perpustakaan.repository;
 
-import com.example.SistemPerpustakaan.model.entity.BookLoaner;
+import com.example.perpustakaan.model.entity.BookLoaner;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

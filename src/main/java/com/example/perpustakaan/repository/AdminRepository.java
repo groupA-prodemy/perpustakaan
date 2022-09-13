@@ -1,6 +1,6 @@
 package com.example.perpustakaan.repository;
 
-import com.example.SistemPerpustakaan.model.entity.Admin;
+import com.example.perpustakaan.model.entity.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

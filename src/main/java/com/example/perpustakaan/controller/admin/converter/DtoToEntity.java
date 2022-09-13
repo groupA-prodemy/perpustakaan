@@ -1,7 +1,7 @@
 package com.example.perpustakaan.controller.admin.converter;
 
-import com.example.SistemPerpustakaan.model.dto.AdminDto;
-import com.example.SistemPerpustakaan.model.entity.Admin;
+import com.example.perpustakaan.model.dto.AdminDto;
+import com.example.perpustakaan.model.entity.Admin;
 
 public class DtoToEntity {
 
