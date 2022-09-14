@@ -1,12 +1,7 @@
 package com.example.perpustakaan.controller.book.crud;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.perpustakaan.controller.book.converter.DtoToEntity;
 import com.example.perpustakaan.controller.book.converter.EntityToDto;
@@ -19,10 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins="http://localhost:8080")
 @RestController
 @RequestMapping("/book")
 public class BookController {
-    
+
+    @Autowired
     private final BookRepository bookRepository;
 
     public BookController (BookRepository bookRepository) {
@@ -58,7 +55,7 @@ public class BookController {
         return defaultResponse;
     }
 
-    @PutMapping("/update-books-detail/{id}")
+    @PutMapping("/update-book-detail/{bookId}")
     public DefaultResponse updateBookById (@PathVariable Integer BookId, @RequestBody BookDto bookDto) {
         DefaultResponse defaultResponse = new DefaultResponse();
         try {
@@ -81,6 +78,21 @@ public class BookController {
         } catch (Exception e) {
             defaultResponse.setStatus(Boolean.FALSE);
             defaultResponse.setMessage("Data Gagal Diperbarui");
+        }
+        return defaultResponse;
+    }
+
+    @DeleteMapping("/delete/{bookId}")
+    public DefaultResponse deleteByBookId (@PathVariable Integer bookId) {
+        DefaultResponse defaultResponse = new DefaultResponse();
+        Optional<Book> optionalBook = bookRepository.findByBookId(bookId);
+        if (optionalBook.isPresent()) {
+            bookRepository.delete(optionalBook.get());
+            defaultResponse.setStatus(Boolean.TRUE);
+            defaultResponse.setMessage("Data Berhasil Dihapus");
+        } else {
+            defaultResponse.setStatus(Boolean.FALSE);
+            defaultResponse.setMessage("Data Gagal Dihapus");
         }
         return defaultResponse;
     }

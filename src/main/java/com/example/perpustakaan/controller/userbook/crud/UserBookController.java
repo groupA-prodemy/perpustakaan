@@ -6,16 +6,19 @@ import com.example.perpustakaan.model.dto.DefaultResponse;
 import com.example.perpustakaan.model.dto.UserBookDto;
 import com.example.perpustakaan.model.entity.UserBook;
 import com.example.perpustakaan.repository.UserBookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins="http://localhost:8080")
 @RestController
 @RequestMapping("/userbook")
 public class UserBookController {
 
+    @Autowired
     private final UserBookRepository userBookRepository;
 
     public UserBookController(UserBookRepository userBookRepository) {
@@ -43,7 +46,7 @@ public class UserBookController {
             defaultResponse.setStatus(Boolean.FALSE);
             defaultResponse.setMessage("Gagal Menambahkan Pengguna Buku");
         } else {
-//            userBookRepository.save(userBook);
+            userBookRepository.save(userBook);
             defaultResponse.setStatus(Boolean.TRUE);
             defaultResponse.setMessage("Data Pengguna Berhasil Ditambahkan");
             defaultResponse.setData(userBookDto);
@@ -51,7 +54,7 @@ public class UserBookController {
         return defaultResponse;
     }
 
-    @PutMapping("/update-userbook/{id}")
+    @PutMapping("/update-userbook/{userBookId}")
     public DefaultResponse updateUserBookById (@PathVariable Integer UserBookId, @RequestBody UserBookDto userBookDto) {
         DefaultResponse defaultResponse = new DefaultResponse();
         try {
@@ -64,7 +67,7 @@ public class UserBookController {
                 userBook.setStartDate(userBookDto.getStartDate());
                 userBook.setDueDate(userBookDto.getDueDate());
                 userBook.setIsReturned(userBookDto.getIsReturned());
-//                userBookRepository.save(userBook);
+                userBookRepository.save(userBook);
                 defaultResponse.setStatus(Boolean.TRUE);
                 defaultResponse.setData(userBookDto);
                 defaultResponse.setMessage("Data Berhasil Diperbarui");
@@ -72,6 +75,21 @@ public class UserBookController {
         } catch (Exception e) {
             defaultResponse.setStatus(Boolean.FALSE);
             defaultResponse.setMessage("Data Gagal Diperbarui");
+        }
+        return defaultResponse;
+    }
+
+    @DeleteMapping("/delete/{userBookId}")
+    public DefaultResponse deleteByUserBookId (@PathVariable Integer userBoookId) {
+        DefaultResponse defaultResponse = new DefaultResponse();
+        Optional<UserBook> optionalUserBook = userBookRepository.findByUserBookId(userBoookId);
+        if (optionalUserBook.isPresent()) {
+            userBookRepository.delete(optionalUserBook.get());
+            defaultResponse.setStatus(Boolean.TRUE);
+            defaultResponse.setMessage("Data Berhasil Dihapus");
+        } else {
+            defaultResponse.setStatus(Boolean.FALSE);
+            defaultResponse.setMessage("Data Gagal Dihapus");
         }
         return defaultResponse;
     }
