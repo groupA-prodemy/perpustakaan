@@ -19,13 +19,41 @@ public class Book {
     @Column(name = "book_year")
     private Integer bookYear;
 
-    @Column(name = "author_id")
-    private Integer authorId;
-    @Column(name = "category_id")
-    private Integer categoryId;
-    @Column(name = "publisher_id")
-    private Integer publisherId;
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "author_id", referencedColumnName = "id_author")
+    private Author author;
 
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "category_id", referencedColumnName = "id_kategori")
+    private Kategori kategori;
+
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "publisher_id", referencedColumnName = "id_publisher")
+    private Publisher publisher;
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Kategori getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(Kategori kategori) {
+        this.kategori = kategori;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
 
     public Integer getBookId() {
         return bookId;
@@ -59,27 +87,27 @@ public class Book {
         this.bookYear = bookYear;
     }
 
-    public Integer getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
-    }
-
-    public Integer getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Integer getPublisherId() {
-        return publisherId;
-    }
-
-    public void setPublisherId(Integer publisherId) {
-        this.publisherId = publisherId;
-    }
+//    public Integer getAuthorId() {
+//        return authorId;
+//    }
+//
+//    public void setAuthorId(Integer authorId) {
+//        this.authorId = authorId;
+//    }
+//
+//    public Integer getCategoryId() {
+//        return categoryId;
+//    }
+//
+//    public void setCategoryId(Integer categoryId) {
+//        this.categoryId = categoryId;
+//    }
+//
+//    public Integer getPublisherId() {
+//        return publisherId;
+//    }
+//
+//    public void setPublisherId(Integer publisherId) {
+//        this.publisherId = publisherId;
+//    }
 }

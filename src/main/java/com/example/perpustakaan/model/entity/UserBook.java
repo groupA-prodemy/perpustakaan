@@ -13,11 +13,13 @@ public class UserBook {
     @Column(name = "userbook_id")
     private Integer userBookId;
 
-    @Column(name = "id_book")
-    private Integer idBook;
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_book", referencedColumnName = "book_id")
+    private Book book;
 
-    @Column(name = "id_user")
-    private Integer idUser;
+    @OneToOne (cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_user", referencedColumnName = "user_id")
+    private User user;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "start_date")
@@ -39,20 +41,36 @@ public class UserBook {
         this.userBookId = userBookId;
     }
 
-    public Integer getIdBook() {
-        return idBook;
+//    public Integer getIdBook() {
+//        return idBook;
+//    }
+//
+//    public void setIdBook(Integer idBook) {
+//        this.idBook = idBook;
+//    }
+//
+//    public Integer getIdUser() {
+//        return idUser;
+//    }
+//
+//    public void setIdUser(Integer idUser) {
+//        this.idUser = idUser;
+//    }
+
+    public Book getBook() {
+        return book;
     }
 
-    public void setIdBook(Integer idBook) {
-        this.idBook = idBook;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
-    public Integer getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getStartDate() {
