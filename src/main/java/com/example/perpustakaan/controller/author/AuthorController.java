@@ -1,8 +1,6 @@
 package com.example.perpustakaan.controller.author;
 
-import com.example.perpustakaan.model.dto.AdminDto;
 import com.example.perpustakaan.model.dto.DefaultResponse;
-import com.example.perpustakaan.model.entity.Admin;
 import com.example.perpustakaan.model.entity.Author;
 import com.example.perpustakaan.model.dto.AuthorDto;
 
