@@ -18,6 +18,7 @@ public class Book {
     private String bookStatus;
     @Column(name = "book_year")
     private Integer bookYear;
+
     @Column(name = "author_id")
     private Integer authorId;
     @Column(name = "category_id")
