@@ -3,6 +3,12 @@ package com.example.perpustakaan.model.dto;
 public class BookDto {
 
     private Integer bookId;
+    private String bookTitle;
+    private String bookStatus;
+    private Integer bookYear;
+    private Integer authorId;
+    private Integer categoryId;
+    private Integer publisherId;
 
     public Integer getBookId() {
         return bookId;
@@ -60,10 +66,5 @@ public class BookDto {
         this.publisherId = publisherId;
     }
 
-    private String bookTitle;
-    private String bookStatus;
-    private Integer bookYear;
-    private Integer authorId;
-    private Integer categoryId;
-    private Integer publisherId;
+
 }
