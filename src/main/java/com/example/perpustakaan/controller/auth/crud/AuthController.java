@@ -19,7 +19,6 @@ public class AuthController {
     DtoToEntity dtoToEntity = new DtoToEntity();
 
     private final UserRepository userRepository;
-
     private final RoleRepository roleRepository;
 
     public AuthController(UserRepository userRepository, RoleRepository roleRepository) {
@@ -32,10 +31,11 @@ public class AuthController {
         DefaultResponse defaultResponse = new DefaultResponse();
         Optional<User> optionalUserUsername = userRepository.findByUsername(loginDto.getUsername());
         Optional<User> optionalUserPassword = userRepository.findByPassword(loginDto.getPassword());
+        Optional<User> optionalUser = userRepository.findByUsernameAndPassword(loginDto.getUsername(), loginDto.getPassword());
         if (optionalUserUsername.isPresent()){
             if(optionalUserPassword.isPresent()){
                 defaultResponse.setStatus(Boolean.TRUE);
-                defaultResponse.setMessage("Succeeded Login");
+                defaultResponse.setMessage("Succeeded Login, Hallo " + optionalUser.get().getRoleName());
             }else {
                 defaultResponse.setStatus(Boolean.FALSE);
                 defaultResponse.setMessage("Wrong Password!!!");
