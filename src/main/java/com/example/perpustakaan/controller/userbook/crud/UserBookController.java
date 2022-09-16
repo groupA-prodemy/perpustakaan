@@ -62,7 +62,6 @@ public class UserBookController {
             Optional <UserBook> optionalUserBook = userBookRepository.findByUserBookId(UserBookId);
             UserBook userBook = optionalUserBook.get();
             if (optionalUserBook.isPresent()) {
-                userBook.setUserBookId(userBookDto.getUserBookId());
                 userBook.setIdBook(userBookDto.getIdBook());
                 userBook.setIdUser(userBookDto.getIdUser());
                 userBook.setStartDate(userBookDto.getStartDate());
