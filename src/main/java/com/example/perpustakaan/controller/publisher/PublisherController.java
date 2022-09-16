@@ -32,7 +32,9 @@ public class PublisherController {
         } catch (Exception e){
             publisherRepository.save(publisher);
             response.setStatus(Boolean.TRUE);
+            response.setData(publisherDto);
             response.setMessage("Berhasil Simpan Data");
+
         }
 
         return response;
@@ -42,7 +44,7 @@ public class PublisherController {
         Publisher publisher = new Publisher();
         publisher.setIdPublisher(dto.getIdPublisher());
         publisher.setNamePublisher(dto.getNamePublisher());
-        publisher.setAdressPublisher(dto.getAdressPublisher());
+        publisher.setAddressPublisher(dto.getAddressPublisher());
 
         return publisher;
     }
@@ -60,7 +62,7 @@ public class PublisherController {
         PublisherDto dto = new PublisherDto();
         dto.setIdPublisher(entity.getIdPublisher());
         dto.setNamePublisher(entity.getNamePublisher());
-        dto.setAdressPublisher(entity.getAdressPublisher());
+        dto.setAddressPublisher(entity.getAddressPublisher());
 
         return dto;
     }
@@ -73,7 +75,7 @@ public class PublisherController {
             Publisher publisher = optionalPublisher.get();
             if (optionalPublisher.isPresent()){
                 publisher.setNamePublisher(publisherDto.getNamePublisher());
-                publisher.setAdressPublisher(publisherDto.getAdressPublisher());
+                publisher.setAddressPublisher(publisherDto.getAddressPublisher());
                 publisherRepository.save(publisher);
                 defaultResponse.setStatus(Boolean.TRUE);
                 defaultResponse.setData(publisherDto);

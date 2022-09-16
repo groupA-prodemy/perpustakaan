@@ -13,8 +13,8 @@ public class Publisher {
     private Integer idPublisher;
     @Column(name = "name_publisher")
     private String namePublisher;
-    @Column(name = "adress_publisher")
-    private String adressPublisher;
+    @Column(name = "address_publisher")
+    private String addressPublisher;
 
     public Integer getIdPublisher() {
         return idPublisher;
@@ -32,11 +32,11 @@ public class Publisher {
         this.namePublisher = namePublisher;
     }
 
-    public String getAdressPublisher() {
-        return adressPublisher;
+    public String getAddressPublisher() {
+        return addressPublisher;
     }
 
-    public void setAdressPublisher(String adressPublisher) {
-        this.adressPublisher = adressPublisher;
+    public void setAddressPublisher(String addressPublisher) {
+        this.addressPublisher = addressPublisher;
     }
 }

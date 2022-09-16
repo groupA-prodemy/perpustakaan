@@ -4,7 +4,7 @@ public class PublisherDto {
 
     private Integer idPublisher;
     private String namePublisher;
-    private String adressPublisher;
+    private String addressPublisher;
 
     public Integer getIdPublisher() {
         return idPublisher;
@@ -22,11 +22,11 @@ public class PublisherDto {
         this.namePublisher = namePublisher;
     }
 
-    public String getAdressPublisher() {
-        return adressPublisher;
+    public String getAddressPublisher() {
+        return addressPublisher;
     }
 
-    public void setAdressPublisher(String adressPublisher) {
-        this.adressPublisher = adressPublisher;
+    public void setAddressPublisher(String addressPublisher) {
+        this.addressPublisher = addressPublisher;
     }
 }
