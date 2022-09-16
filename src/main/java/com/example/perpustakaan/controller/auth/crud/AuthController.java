@@ -32,25 +32,22 @@ public class AuthController {
     public DefaultResponse<LoginDtoResponse> LoginUser(@RequestBody LoginDto loginDto){
         DefaultResponse<LoginDtoResponse> defaultResponse = new DefaultResponse();
         LoginDtoResponse loginDtoResponse = new LoginDtoResponse();
-        Optional<User> optionalUserUsername = userRepository.findByUsername(loginDto.getUsername());
-        Optional<User> optionalUserPassword = userRepository.findByPassword(loginDto.getPassword());
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword(loginDto.getUsername(), loginDto.getPassword());
-        if (optionalUserUsername.isPresent()){
-            if(optionalUserPassword.isPresent()){
-                loginDtoResponse.setName(optionalUserPassword.get().getName());
-                loginDtoResponse.setUsername(optionalUserPassword.get().getUsername());
-                loginDtoResponse.setRoleName(optionalUserPassword.get().getRole().getRoleName());
-                defaultResponse.setStatus(Boolean.TRUE);
-                defaultResponse.setMessage("Succeeded Login, Hallo " + optionalUser.get().getRole().getRoleName());
-                defaultResponse.setData(loginDtoResponse);
-
-            }else {
+        if (optionalUser.isEmpty()){
+            if(userRepository.findByUsername(loginDto.getUsername()).isPresent()){
                 defaultResponse.setStatus(Boolean.FALSE);
                 defaultResponse.setMessage("Wrong Password!!!");
+            }else {
+                defaultResponse.setStatus(Boolean.FALSE);
+                defaultResponse.setMessage("Username Unregistered!!! Please, register before");
             }
         }else {
-            defaultResponse.setStatus(Boolean.FALSE);
-            defaultResponse.setMessage("Username Unregistered!!! Please, register before");
+            loginDtoResponse.setName(optionalUser.get().getName());
+            loginDtoResponse.setUsername(optionalUser.get().getUsername());
+            loginDtoResponse.setRoleName(optionalUser.get().getRole().getRoleName());
+            defaultResponse.setStatus(Boolean.TRUE);
+            defaultResponse.setMessage("Succeeded Login, Hallo " + optionalUser.get().getRole().getRoleName());
+            defaultResponse.setData(loginDtoResponse);
         }
         return defaultResponse;
     }
@@ -79,10 +76,16 @@ public class AuthController {
             defaultResponse.setStatus(Boolean.FALSE);
             defaultResponse.setMessage("Failed to save data, data was exists");
         } else {
-            userRepository.save(user);
-            defaultResponse.setStatus(Boolean.TRUE);
-            defaultResponse.setData(userDtoRegister);
-            defaultResponse.setMessage("Succeeded to save data, you registered as " + optionalRole.get().getRoleName() + " (Role Id : " + userDtoRegister.getRoleId() + ")");
+            if(userRepository.findByUsername(userDtoRegister.getUsername()).isEmpty()){
+                userRepository.save(user);
+                defaultResponse.setStatus(Boolean.TRUE);
+                defaultResponse.setData(userDtoRegister);
+                defaultResponse.setMessage("Succeeded to save data, you registered as " + optionalRole.get().getRoleName() + " (Role Id : " + userDtoRegister.getRoleId() + ")");
+            }
+            else {
+                defaultResponse.setStatus(Boolean.FALSE);
+                defaultResponse.setMessage("Failed to save data, username was exists. Please use other username");
+            }
         }
         return defaultResponse;
     }
