@@ -81,9 +81,9 @@ public class UserBookController {
     }
 
     @DeleteMapping("/delete/{userBookId}")
-    public DefaultResponse deleteByUserBookId (@PathVariable Integer userBoookId) {
+    public DefaultResponse deleteByUserBookId (@PathVariable Integer userBookId) {
         DefaultResponse defaultResponse = new DefaultResponse();
-        Optional<UserBook> optionalUserBook = userBookRepository.findByUserBookId(userBoookId);
+        Optional<UserBook> optionalUserBook = userBookRepository.findByUserBookId(userBookId);
         if (optionalUserBook.isPresent()) {
             userBookRepository.delete(optionalUserBook.get());
             defaultResponse.setStatus(Boolean.TRUE);
