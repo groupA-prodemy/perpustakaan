@@ -25,9 +25,6 @@ public class User {
     @JoinColumn(name = "role_id", insertable = false, updatable = false)
     private Role role;
 
-    @Column(name = "role_name")
-    private String roleName;
-
     public Integer getId() {
         return id;
     }
@@ -76,11 +73,4 @@ public class User {
         this.role = role;
     }
 
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
 }

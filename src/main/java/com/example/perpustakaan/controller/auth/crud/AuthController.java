@@ -3,7 +3,8 @@ package com.example.perpustakaan.controller.auth.crud;
 import com.example.perpustakaan.controller.auth.converter.DtoToEntity;
 import com.example.perpustakaan.model.dto.DefaultResponse;
 import com.example.perpustakaan.model.dto.LoginDto;
-import com.example.perpustakaan.model.dto.UserDto;
+import com.example.perpustakaan.model.dto.LoginDtoResponse;
+import com.example.perpustakaan.model.dto.UserDtoRegister;
 import com.example.perpustakaan.model.entity.Role;
 import com.example.perpustakaan.model.entity.User;
 import com.example.perpustakaan.repository.RoleRepository;
@@ -27,15 +28,21 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public DefaultResponse LoginUser(@RequestBody LoginDto loginDto){
-        DefaultResponse defaultResponse = new DefaultResponse();
+    public DefaultResponse<LoginDtoResponse> LoginUser(@RequestBody LoginDto loginDto){
+        DefaultResponse<LoginDtoResponse> defaultResponse = new DefaultResponse();
+        LoginDtoResponse loginDtoResponse = new LoginDtoResponse();
         Optional<User> optionalUserUsername = userRepository.findByUsername(loginDto.getUsername());
         Optional<User> optionalUserPassword = userRepository.findByPassword(loginDto.getPassword());
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword(loginDto.getUsername(), loginDto.getPassword());
         if (optionalUserUsername.isPresent()){
             if(optionalUserPassword.isPresent()){
+                loginDtoResponse.setName(optionalUserPassword.get().getName());
+                loginDtoResponse.setUsername(optionalUserPassword.get().getUsername());
+                loginDtoResponse.setRoleName(optionalUserPassword.get().getRole().getRoleName());
                 defaultResponse.setStatus(Boolean.TRUE);
-                defaultResponse.setMessage("Succeeded Login, Hallo " + optionalUser.get().getRoleName());
+                defaultResponse.setMessage("Succeeded Login, Hallo " + optionalUser.get().getRole().getRoleName());
+                defaultResponse.setData(loginDtoResponse);
+
             }else {
                 defaultResponse.setStatus(Boolean.FALSE);
                 defaultResponse.setMessage("Wrong Password!!!");
@@ -62,23 +69,20 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public DefaultResponse<UserDto> regist(@RequestBody UserDto userDto) {
-        User user = dtoToEntity.convertDtoToEntity(userDto);
-        DefaultResponse<UserDto> defaultResponse = new DefaultResponse<>();
-        Optional<User> optionalUser = userRepository.findByUsernameAndPassword(userDto.getUsername(), userDto.getPassword());
-        Optional<Role> optionalRole = roleRepository.findByRoleId(userDto.getRoleId());
+    public DefaultResponse<UserDtoRegister> regist(@RequestBody UserDtoRegister userDtoRegister) {
+        User user = dtoToEntity.convertDtoToEntityRegister(userDtoRegister);
+        DefaultResponse<UserDtoRegister> defaultResponse = new DefaultResponse<>();
+        Optional<User> optionalUser = userRepository.findByUsernameAndPassword(userDtoRegister.getUsername(), userDtoRegister.getPassword());
+        Optional<Role> optionalRole = roleRepository.findById(userDtoRegister.getRoleId());
         if (optionalUser.isPresent()) {
             defaultResponse.setStatus(Boolean.FALSE);
             defaultResponse.setMessage("Failed to save data, data was exists");
         } else {
-            user.setRoleName(optionalRole.get().getRoleName());
             userRepository.save(user);
             defaultResponse.setStatus(Boolean.TRUE);
-            defaultResponse.setData(userDto);
-            defaultResponse.setMessage("Succeeded to save data");
+            defaultResponse.setData(userDtoRegister);
+            defaultResponse.setMessage("Succeeded to save data, you registered as " + optionalRole.get().getRoleName() + " (Role Id : " + userDtoRegister.getRoleId() + ")");
         }
         return defaultResponse;
     }
-
-
 }
