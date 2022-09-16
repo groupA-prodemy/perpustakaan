@@ -1,7 +1,7 @@
 package com.example.perpustakaan.repository;
 
-import com.example.perpustakaan.model.entity.Kategori;
+import com.example.perpustakaan.model.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface KategoriRepository extends JpaRepository <Kategori, Integer> {
+public interface CategoryRepository extends JpaRepository <Category, Integer> {
 }

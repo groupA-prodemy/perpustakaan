@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/kategori")
-public class KategoriController {
+public class CategoryController {
 
     @Autowired
     private CategoryRepository kategoriRepositori;

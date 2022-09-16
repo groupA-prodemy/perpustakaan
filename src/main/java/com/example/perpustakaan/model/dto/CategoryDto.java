@@ -1,6 +1,6 @@
 package com.example.perpustakaan.model.dto;
 
-public class KategoriDto {
+public class CategoryDto {
     private Integer idKategori;
     private String namaKategori;
 

@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "kategori")
-public class Kategori {
+public class Category {
     @Id
     @Column(name = "id_kategori")
     private Integer idKategori;

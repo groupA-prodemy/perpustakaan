@@ -34,7 +34,7 @@ public class Book {
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
-    private Kategori kategori;
+    private Category category;
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "publisher_id",  insertable = false, updatable = false)
@@ -81,12 +81,12 @@ public class Book {
         this.author = author;
     }
 
-    public Kategori getKategori() {
-        return kategori;
+    public Category getKategori() {
+        return category;
     }
 
-    public void setKategori(Kategori kategori) {
-        this.kategori = kategori;
+    public void setKategori(Category category) {
+        this.category = category;
     }
 
     public Publisher getPublisher() {
