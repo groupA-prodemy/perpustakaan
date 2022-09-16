@@ -3,6 +3,7 @@ package com.example.perpustakaan.controller.userbook.crud;
 import com.example.perpustakaan.controller.userbook.converter.DtoToEntity;
 import com.example.perpustakaan.controller.userbook.converter.EntityToDto;
 import com.example.perpustakaan.model.dto.DefaultResponse;
+import com.example.perpustakaan.model.dto.PostUserBookDto;
 import com.example.perpustakaan.model.dto.UserBookDto;
 import com.example.perpustakaan.model.entity.UserBook;
 import com.example.perpustakaan.repository.UserBookRepository;
@@ -38,9 +39,9 @@ public class UserBookController {
     }
 
     @PostMapping("/add-userbook")
-    public DefaultResponse<UserBookDto> addUserBook (@RequestBody UserBookDto userBookDto) {
+    public DefaultResponse<PostUserBookDto> addUserBook (@RequestBody PostUserBookDto userBookDto) {
         UserBook userBook = dtoToEntity.convertDtoToEntity(userBookDto);
-        DefaultResponse<UserBookDto> defaultResponse = new DefaultResponse<>();
+        DefaultResponse<PostUserBookDto> defaultResponse = new DefaultResponse<>();
         Optional<UserBook> optionalUserBook = userBookRepository.findByUserBookId (userBookDto.getUserBookId());
         if (optionalUserBook.isPresent()) {
             defaultResponse.setStatus(Boolean.FALSE);
@@ -48,14 +49,14 @@ public class UserBookController {
         } else {
             userBookRepository.save(userBook);
             defaultResponse.setStatus(Boolean.TRUE);
-            defaultResponse.setMessage("Data Pengguna Berhasil Ditambahkan");
+            defaultResponse.setMessage("Pengguna Buku Berhasil Ditambahkan");
             defaultResponse.setData(userBookDto);
         }
         return defaultResponse;
     }
 
-    @PutMapping("/update-userbook/{userBookId}")
-    public DefaultResponse updateUserBookById (@PathVariable Integer UserBookId, @RequestBody UserBookDto userBookDto) {
+    @PutMapping("/update-userbook/{UserBookId}")
+    public DefaultResponse updateUserBookById (@PathVariable Integer UserBookId, @RequestBody PostUserBookDto userBookDto) {
         DefaultResponse defaultResponse = new DefaultResponse();
         try {
             Optional <UserBook> optionalUserBook = userBookRepository.findByUserBookId(UserBookId);
@@ -86,10 +87,12 @@ public class UserBookController {
         if (optionalUserBook.isPresent()) {
             userBookRepository.delete(optionalUserBook.get());
             defaultResponse.setStatus(Boolean.TRUE);
-            defaultResponse.setMessage("Data Berhasil Dihapus");
+            defaultResponse.setMessage("Berhasil Dihapus");
+            defaultResponse.setData("Clear");
         } else {
             defaultResponse.setStatus(Boolean.FALSE);
-            defaultResponse.setMessage("Data Gagal Dihapus");
+            defaultResponse.setMessage("Gagal Dihapus");
+            defaultResponse.setData("Data Yang Anda Pilih Tidak Ada!");
         }
         return defaultResponse;
     }

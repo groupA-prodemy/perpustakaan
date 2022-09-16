@@ -23,11 +23,13 @@ public class PublisherController {
     public DefaultResponse<PublisherDto> savepublisher(@RequestBody PublisherDto publisherDto){
         Publisher publisher = convertDtoToEntity(publisherDto);
         DefaultResponse<PublisherDto> response = new DefaultResponse();
-        Optional<Publisher> optional = publisherRepository.findById(publisherDto.getId());
-        if(optional.isPresent()){
-            response.setStatus(Boolean.FALSE);
-            response.setMessage("Error, Data Sudah Tersedia");
-        } else {
+        try {
+            Optional<Publisher> optional = publisherRepository.findById(publisherDto.getIdPublisher());
+            if(optional.isPresent()){
+                response.setStatus(Boolean.FALSE);
+                response.setMessage("Error, Data Sudah Tersedia");
+            }
+        } catch (Exception e){
             publisherRepository.save(publisher);
             response.setStatus(Boolean.TRUE);
             response.setMessage("Berhasil Simpan Data");
@@ -38,9 +40,9 @@ public class PublisherController {
 
     public Publisher convertDtoToEntity(PublisherDto dto){
         Publisher publisher = new Publisher();
-        publisher.setIdPublisher(dto.getId());
-        publisher.setNamePublisher(dto.getName());
-        publisher.setAdressPublisher(dto.getAdress());
+        publisher.setIdPublisher(dto.getIdPublisher());
+        publisher.setNamePublisher(dto.getNamePublisher());
+        publisher.setAdressPublisher(dto.getAdressPublisher());
 
         return publisher;
     }
@@ -56,9 +58,9 @@ public class PublisherController {
 
     public PublisherDto convertEntityToDto(Publisher entity){
         PublisherDto dto = new PublisherDto();
-        dto.setId(entity.getIdPublisher());
-        dto.setName(entity.getNamePublisher());
-        dto.setAdress(entity.getAdressPublisher());
+        dto.setIdPublisher(entity.getIdPublisher());
+        dto.setNamePublisher(entity.getNamePublisher());
+        dto.setAdressPublisher(entity.getAdressPublisher());
 
         return dto;
     }
@@ -70,8 +72,8 @@ public class PublisherController {
             Optional<Publisher> optionalPublisher = publisherRepository.findById(id);
             Publisher publisher = optionalPublisher.get();
             if (optionalPublisher.isPresent()){
-                publisher.setNamePublisher(publisherDto.getName());
-                publisher.setAdressPublisher(publisherDto.getAdress());
+                publisher.setNamePublisher(publisherDto.getNamePublisher());
+                publisher.setAdressPublisher(publisherDto.getAdressPublisher());
                 publisherRepository.save(publisher);
                 defaultResponse.setStatus(Boolean.TRUE);
                 defaultResponse.setData(publisherDto);

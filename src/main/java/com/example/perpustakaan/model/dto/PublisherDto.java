@@ -2,31 +2,31 @@ package com.example.perpustakaan.model.dto;
 
 public class PublisherDto {
 
-    private Integer id;
-    private String name;
-    private String adress;
+    private Integer idPublisher;
+    private String namePublisher;
+    private String adressPublisher;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdPublisher() {
+        return idPublisher;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdPublisher(Integer idPublisher) {
+        this.idPublisher = idPublisher;
     }
 
-    public String getName() {
-        return name;
+    public String getNamePublisher() {
+        return namePublisher;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNamePublisher(String namePublisher) {
+        this.namePublisher = namePublisher;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAdressPublisher() {
+        return adressPublisher;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAdressPublisher(String adressPublisher) {
+        this.adressPublisher = adressPublisher;
     }
 }

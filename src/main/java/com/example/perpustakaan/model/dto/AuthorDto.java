@@ -7,7 +7,6 @@ public class AuthorDto {
     private String authorAddress;
     private String noHp;
 
-
     public Integer getAuthorId() {
         return authorId;
     }

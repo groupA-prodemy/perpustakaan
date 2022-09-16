@@ -1,5 +1,6 @@
 package com.example.perpustakaan.controller.book.crud;
 
+import com.example.perpustakaan.model.dto.PostBookDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,9 +40,9 @@ public class BookController {
     }
 
     @PostMapping("/add-book")
-    public DefaultResponse<BookDto> addBook (@RequestBody BookDto bookDto) {
+    public DefaultResponse<PostBookDto> addBook (@RequestBody PostBookDto bookDto) {
         Book book = dtoToEntity.convertDtoToEntity(bookDto);
-        DefaultResponse<BookDto> defaultResponse = new DefaultResponse<>();
+        DefaultResponse<PostBookDto> defaultResponse = new DefaultResponse<>();
         Optional<Book> optionalBook = bookRepository.findByBookId(bookDto.getBookId());
         if (optionalBook.isPresent()) {
             defaultResponse.setStatus(Boolean.FALSE);
@@ -55,14 +56,13 @@ public class BookController {
         return defaultResponse;
     }
 
-    @PutMapping("/update-book-detail/{bookId}")
-    public DefaultResponse updateBookById (@PathVariable Integer BookId, @RequestBody BookDto bookDto) {
+    @PutMapping("/update/{BookId}")
+    public DefaultResponse updateBookById (@PathVariable Integer BookId, @RequestBody PostBookDto bookDto) {
         DefaultResponse defaultResponse = new DefaultResponse();
         try {
            Optional<Book> optionalBook = bookRepository.findByBookId(BookId);
            Book book = optionalBook.get();
            if (optionalBook.isPresent()) {
-               book.setBookId(bookDto.getBookId());
                book.setBookTitle(bookDto.getBookTitle());
                book.setBookStatus(bookDto.getBookStatus());
                book.setBookYear(bookDto.getBookYear());
@@ -89,10 +89,12 @@ public class BookController {
         if (optionalBook.isPresent()) {
             bookRepository.delete(optionalBook.get());
             defaultResponse.setStatus(Boolean.TRUE);
-            defaultResponse.setMessage("Data Berhasil Dihapus");
+            defaultResponse.setMessage("Berhasil Dihapus");
+            defaultResponse.setData("Clear");
         } else {
             defaultResponse.setStatus(Boolean.FALSE);
-            defaultResponse.setMessage("Data Gagal Dihapus");
+            defaultResponse.setMessage("Gagal Dihapus");
+            defaultResponse.setData("Data Yang Anda Pilih Tidak Ada!");
         }
         return defaultResponse;
     }

@@ -8,8 +8,8 @@ public class EntityToDto {
     public UserBookDto convertEntityToDto (UserBook userBook) {
         UserBookDto userBookDto = new UserBookDto();
         userBookDto.setUserBookId(userBook.getUserBookId());
-        userBookDto.setIdBook(userBook.getIdBook());
-        userBookDto.setIdUser(userBook.getIdUser());
+        userBookDto.getBookTitle(userBook.getBook().getBookTitle());
+        userBookDto.getUserName(userBook.getUser().getUsername());
         userBookDto.setStartDate(userBook.getStartDate());
         userBookDto.setDueDate(userBook.getDueDate());
         userBookDto.setIsReturned(userBook.getIsReturned());

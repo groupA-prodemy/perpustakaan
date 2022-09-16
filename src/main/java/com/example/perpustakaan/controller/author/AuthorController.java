@@ -95,7 +95,6 @@ public class AuthorController {
         dto.setNoHp(entity.getNoHp());
 
         return dto;
-
     }
 
     private Author convertDtoToEntity(AuthorDto authorDto) {
@@ -107,8 +106,6 @@ public class AuthorController {
         author.setNoHp(authorDto.getNoHp());
 
         return author;
-
-
     }
 
 

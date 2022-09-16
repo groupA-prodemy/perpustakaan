@@ -4,11 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-public class UserBookDto {
-
+public class PostUserBookDto {
     private Integer userBookId;
-    private String bookTitle;
-    private String userName;
+    private Integer idBook;
+    private Integer idUser;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd"/* HH:mm:ss*/)
     private Date startDate;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd"/* HH:mm:ss*/)
@@ -24,20 +23,20 @@ public class UserBookDto {
         this.userBookId = userBookId;
     }
 
-    public String getBookTitle(String bookTitle) {
-        return this.bookTitle;
+    public Integer getIdBook() {
+        return idBook;
     }
 
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
+    public void setIdBook(Integer idBook) {
+        this.idBook = idBook;
     }
 
-    public String getUserName(String username) {
-        return userName;
+    public Integer getIdUser() {
+        return idUser;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
     }
 
     public Date getStartDate() {
@@ -63,6 +62,4 @@ public class UserBookDto {
     public void setIsReturned(Date isReturned) {
         this.isReturned = isReturned;
     }
-
-
 }
