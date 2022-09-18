@@ -12,7 +12,7 @@ public class Publisher {
     @Column(name = "id_publisher")
     private Integer idPublisher;
     @Column(name = "name_publisher")
-    private String namePublisher;
+    private String publisherName;
     @Column(name = "address_publisher")
     private String addressPublisher;
 
@@ -24,12 +24,12 @@ public class Publisher {
         this.idPublisher = idPublisher;
     }
 
-    public String getNamePublisher() {
-        return namePublisher;
+    public String getPublisherName() {
+        return publisherName;
     }
 
-    public void setNamePublisher(String namePublisher) {
-        this.namePublisher = namePublisher;
+    public void setPublisherName(String publisherName) {
+        this.publisherName = publisherName;
     }
 
     public String getAddressPublisher() {

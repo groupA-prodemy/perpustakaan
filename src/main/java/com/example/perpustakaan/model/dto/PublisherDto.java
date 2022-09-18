@@ -3,7 +3,7 @@ package com.example.perpustakaan.model.dto;
 public class PublisherDto {
 
     private Integer idPublisher;
-    private String namePublisher;
+    private String publisherName;
     private String addressPublisher;
 
     public Integer getIdPublisher() {
@@ -14,12 +14,12 @@ public class PublisherDto {
         this.idPublisher = idPublisher;
     }
 
-    public String getNamePublisher() {
-        return namePublisher;
+    public String getPublisherName() {
+        return publisherName;
     }
 
-    public void setNamePublisher(String namePublisher) {
-        this.namePublisher = namePublisher;
+    public void setPublisherName(String publisherName) {
+        this.publisherName = publisherName;
     }
 
     public String getAddressPublisher() {

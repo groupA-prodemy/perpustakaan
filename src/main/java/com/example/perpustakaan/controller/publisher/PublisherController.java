@@ -43,7 +43,7 @@ public class PublisherController {
     public Publisher convertDtoToEntity(PublisherDto dto){
         Publisher publisher = new Publisher();
         publisher.setIdPublisher(dto.getIdPublisher());
-        publisher.setNamePublisher(dto.getNamePublisher());
+        publisher.setPublisherName(dto.getPublisherName());
         publisher.setAddressPublisher(dto.getAddressPublisher());
 
         return publisher;
@@ -61,7 +61,7 @@ public class PublisherController {
     public PublisherDto convertEntityToDto(Publisher entity){
         PublisherDto dto = new PublisherDto();
         dto.setIdPublisher(entity.getIdPublisher());
-        dto.setNamePublisher(entity.getNamePublisher());
+        dto.setPublisherName(entity.getPublisherName());
         dto.setAddressPublisher(entity.getAddressPublisher());
 
         return dto;
@@ -74,7 +74,7 @@ public class PublisherController {
             Optional<Publisher> optionalPublisher = publisherRepository.findById(id);
             Publisher publisher = optionalPublisher.get();
             if (optionalPublisher.isPresent()){
-                publisher.setNamePublisher(publisherDto.getNamePublisher());
+                publisher.setPublisherName(publisherDto.getPublisherName());
                 publisher.setAddressPublisher(publisherDto.getAddressPublisher());
                 publisherRepository.save(publisher);
                 defaultResponse.setStatus(Boolean.TRUE);
