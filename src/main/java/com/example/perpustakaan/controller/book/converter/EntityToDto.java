@@ -11,7 +11,7 @@ public class EntityToDto {
         bookDto.setBookTitle(book.getBookTitle());
         bookDto.setBookStatus(book.getBookStatus());
         bookDto.setBookYear(book.getBookYear());
-        bookDto.setCategoryName(book.getKategori().getNamaKategori());
+        bookDto.setCategoryName(book.getCategory().getCategoryName());
         bookDto.setAuthorName(book.getAuthor().getAuthorName());
         bookDto.setPublisherName(book.getPublisher().getPublisherName());
 

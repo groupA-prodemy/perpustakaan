@@ -1,23 +1,23 @@
 package com.example.perpustakaan.model.dto;
 
 public class CategoryDto {
-    private Integer idKategori;
-    private String namaKategori;
+    private Integer categoryId;
+    private String categoryName;
 
-    public Integer getIdKategori() {
-        return idKategori;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setIdKategori(Integer idKategori) {
-        this.idKategori = idKategori;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getNamaKategori() {
-        return namaKategori;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setNamaKategori(String namaKategori) {
-        this.namaKategori = namaKategori;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }
 

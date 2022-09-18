@@ -81,11 +81,11 @@ public class Book {
         this.author = author;
     }
 
-    public Category getKategori() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setKategori(Category category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

@@ -6,27 +6,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "kategori")
+@Table(name = "t_category")
 public class Category {
     @Id
-    @Column(name = "id_kategori")
-    private Integer idKategori;
-    @Column (name = "nama_kategori")
-    private String namaKategori;
+    @Column(name = "category_id")
+    private Integer categoryID;
+    @Column (name = "category_name")
+    private String categoryName;
 
-    public Integer getIdKategori() {
-        return idKategori;
+    public Integer getCategoryID() {
+        return categoryID;
     }
 
-    public void setIdKategori(Integer idKategori) {
-        this.idKategori = idKategori;
+    public void setCategoryID(Integer categoryID) {
+        this.categoryID = categoryID;
     }
 
-    public String getNamaKategori() {
-        return namaKategori;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setNamaKategori(String namaKategori) {
-        this.namaKategori = namaKategori;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }
