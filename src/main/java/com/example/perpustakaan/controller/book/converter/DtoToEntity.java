@@ -1,6 +1,6 @@
 package com.example.perpustakaan.controller.book.converter;
 
-import com.example.perpustakaan.model.dto.PostBookDto;
+import com.example.perpustakaan.model.dto.book.PostBookDto;
 import com.example.perpustakaan.model.entity.Book;
 import com.example.perpustakaan.repository.AuthorRepository;
 import com.example.perpustakaan.repository.CategoryRepository;

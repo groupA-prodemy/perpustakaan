@@ -1,4 +1,4 @@
-package com.example.perpustakaan.model.dto;
+package com.example.perpustakaan.model.dto.auth;
 
 public class LoginDto {
     private String username;

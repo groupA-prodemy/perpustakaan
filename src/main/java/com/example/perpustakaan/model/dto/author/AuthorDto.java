@@ -1,4 +1,4 @@
-package com.example.perpustakaan.model.dto;
+package com.example.perpustakaan.model.dto.author;
 
 public class AuthorDto {
 

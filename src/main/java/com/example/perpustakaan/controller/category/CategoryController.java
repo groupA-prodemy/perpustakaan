@@ -1,7 +1,7 @@
 package com.example.perpustakaan.controller.category;
 
 import com.example.perpustakaan.model.dto.DefaultResponse;
-import com.example.perpustakaan.model.dto.CategoryDto;
+import com.example.perpustakaan.model.dto.category.CategoryDto;
 import com.example.perpustakaan.model.entity.Category;
 import com.example.perpustakaan.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.example.perpustakaan.model.dto;
+package com.example.perpustakaan.model.dto.book;
 
 public class PostBookDto {
     private Integer bookId;

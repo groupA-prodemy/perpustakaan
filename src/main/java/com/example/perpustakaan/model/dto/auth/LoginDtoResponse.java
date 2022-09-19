@@ -1,12 +1,20 @@
-package com.example.perpustakaan.model.dto;
+package com.example.perpustakaan.model.dto.auth;
 
-public class UserDtoUpdate {
+public class LoginDtoResponse {
 
+    private Integer userId;
     private String name;
     private String username;
-    private String password;
     private Integer roleId;
+    private String roleName;
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public String getName() {
         return name;
@@ -24,19 +32,19 @@ public class UserDtoUpdate {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Integer getRoleId() {
         return roleId;
     }
 
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

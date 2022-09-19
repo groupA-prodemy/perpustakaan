@@ -1,7 +1,7 @@
 package com.example.perpustakaan.controller.publisher;
 
 import com.example.perpustakaan.model.dto.DefaultResponse;
-import com.example.perpustakaan.model.dto.PublisherDto;
+import com.example.perpustakaan.model.dto.publisher.PublisherDto;
 import com.example.perpustakaan.model.entity.Publisher;
 import com.example.perpustakaan.repository.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;

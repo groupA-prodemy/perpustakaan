@@ -2,9 +2,9 @@ package com.example.perpustakaan.controller.auth.crud;
 
 import com.example.perpustakaan.controller.auth.converter.DtoToEntity;
 import com.example.perpustakaan.model.dto.DefaultResponse;
-import com.example.perpustakaan.model.dto.LoginDto;
-import com.example.perpustakaan.model.dto.LoginDtoResponse;
-import com.example.perpustakaan.model.dto.UserDtoRegister;
+import com.example.perpustakaan.model.dto.auth.LoginDto;
+import com.example.perpustakaan.model.dto.auth.LoginDtoResponse;
+import com.example.perpustakaan.model.dto.user.UserDtoRegister;
 import com.example.perpustakaan.model.entity.Role;
 import com.example.perpustakaan.model.entity.User;
 import com.example.perpustakaan.repository.RoleRepository;

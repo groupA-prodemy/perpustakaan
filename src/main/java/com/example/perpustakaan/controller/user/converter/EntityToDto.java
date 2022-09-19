@@ -1,8 +1,8 @@
 package com.example.perpustakaan.controller.user.converter;
 
-import com.example.perpustakaan.model.dto.UserDtoListUser;
-import com.example.perpustakaan.model.dto.UserDtoProfileUser;
-import com.example.perpustakaan.model.dto.UserDtoRegister;
+import com.example.perpustakaan.model.dto.user.UserDtoListUser;
+import com.example.perpustakaan.model.dto.user.UserDtoProfileUser;
+import com.example.perpustakaan.model.dto.user.UserDtoRegister;
 import com.example.perpustakaan.model.entity.User;
 
 public class EntityToDto {

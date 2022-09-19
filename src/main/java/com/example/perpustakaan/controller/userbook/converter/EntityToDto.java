@@ -1,6 +1,6 @@
 package com.example.perpustakaan.controller.userbook.converter;
 
-import com.example.perpustakaan.model.dto.UserBookDto;
+import com.example.perpustakaan.model.dto.userbook.UserBookDto;
 import com.example.perpustakaan.model.entity.UserBook;
 
 public class EntityToDto {

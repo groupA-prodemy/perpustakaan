@@ -2,7 +2,7 @@ package com.example.perpustakaan.controller.author;
 
 import com.example.perpustakaan.model.dto.DefaultResponse;
 import com.example.perpustakaan.model.entity.Author;
-import com.example.perpustakaan.model.dto.AuthorDto;
+import com.example.perpustakaan.model.dto.author.AuthorDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

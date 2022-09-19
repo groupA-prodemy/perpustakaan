@@ -1,12 +1,12 @@
 package com.example.perpustakaan.controller.book.crud;
 
-import com.example.perpustakaan.model.dto.PostBookDto;
+import com.example.perpustakaan.model.dto.book.PostBookDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.perpustakaan.controller.book.converter.DtoToEntity;
 import com.example.perpustakaan.controller.book.converter.EntityToDto;
-import com.example.perpustakaan.model.dto.BookDto;
+import com.example.perpustakaan.model.dto.book.BookDto;
 import com.example.perpustakaan.model.dto.DefaultResponse;
 import com.example.perpustakaan.model.entity.Book;
 import com.example.perpustakaan.repository.BookRepository;

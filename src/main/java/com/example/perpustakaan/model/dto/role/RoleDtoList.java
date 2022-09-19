@@ -1,4 +1,4 @@
-package com.example.perpustakaan.model.dto;
+package com.example.perpustakaan.model.dto.role;
 
 public class RoleDtoList {
     private Integer roleId;

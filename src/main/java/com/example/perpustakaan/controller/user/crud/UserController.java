@@ -2,6 +2,9 @@ package com.example.perpustakaan.controller.user.crud;
 
 import com.example.perpustakaan.controller.user.converter.EntityToDto;
 import com.example.perpustakaan.model.dto.*;
+import com.example.perpustakaan.model.dto.user.UserDtoListUser;
+import com.example.perpustakaan.model.dto.user.UserDtoProfileUser;
+import com.example.perpustakaan.model.dto.user.UserDtoUpdate;
 import com.example.perpustakaan.model.entity.User;
 import com.example.perpustakaan.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;

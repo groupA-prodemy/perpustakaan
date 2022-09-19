@@ -1,14 +1,11 @@
-package com.example.perpustakaan.model.dto;
+package com.example.perpustakaan.model.dto.userbook;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-public class UserBookDto {
-
-    private Integer userbookId;
-    private String bookTitle;
-    private String userName;
+public class PostUserBookDto {
+    private Integer userBookId;
     private Integer bookId;
     private Integer userId;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd"/* HH:mm:ss*/)
@@ -18,12 +15,12 @@ public class UserBookDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd"/* HH:mm:ss*/)
     private Date returnDate;
 
-    public Integer getUserbookId() {
-        return userbookId;
+    public Integer getUserBookId() {
+        return userBookId;
     }
 
-    public void setUserbookId(Integer userbookId) {
-        this.userbookId = userbookId;
+    public void setUserBookId(Integer userBookId) {
+        this.userBookId = userBookId;
     }
 
     public Integer getBookId() {
@@ -40,22 +37,6 @@ public class UserBookDto {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public String getBookTitle(String bookTitle) {
-        return this.bookTitle;
-    }
-
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
-    }
-
-    public String getUserName(String username) {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public Date getStartDate() {
@@ -80,13 +61,5 @@ public class UserBookDto {
 
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
-    }
-
-    public String getBookTitle() {
-        return bookTitle;
-    }
-
-    public String getUserName() {
-        return userName;
     }
 }

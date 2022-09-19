@@ -1,4 +1,4 @@
-package com.example.perpustakaan.model.dto;
+package com.example.perpustakaan.model.dto.category;
 
 public class CategoryDto {
     private Integer categoryId;

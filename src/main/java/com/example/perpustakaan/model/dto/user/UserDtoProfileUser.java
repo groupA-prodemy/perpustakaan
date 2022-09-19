@@ -1,19 +1,19 @@
-package com.example.perpustakaan.model.dto;
+package com.example.perpustakaan.model.dto.user;
 
-public class LoginDtoResponse {
+public class UserDtoProfileUser {
 
-    private Integer userId;
+    private Integer Id;
     private String name;
     private String username;
-    private Integer roleId;
+    private String password;
     private String roleName;
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getId() {
+        return Id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        Id = id;
     }
 
     public String getName() {
@@ -32,12 +32,12 @@ public class LoginDtoResponse {
         this.username = username;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public String getPassword() {
+        return password;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getRoleName() {
@@ -47,4 +47,5 @@ public class LoginDtoResponse {
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
+
 }

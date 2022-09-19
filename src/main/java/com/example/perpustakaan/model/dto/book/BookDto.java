@@ -1,4 +1,4 @@
-package com.example.perpustakaan.model.dto;
+package com.example.perpustakaan.model.dto.book;
 
 import com.example.perpustakaan.model.entity.Author;
 import com.example.perpustakaan.model.entity.Publisher;
