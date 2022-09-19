@@ -42,8 +42,10 @@ public class AuthController {
                 defaultResponse.setMessage("Username Unregistered!!! Please, register before");
             }
         }else {
+            loginDtoResponse.setUserId(optionalUser.get().getId());
             loginDtoResponse.setName(optionalUser.get().getName());
             loginDtoResponse.setUsername(optionalUser.get().getUsername());
+            loginDtoResponse.setRoleId(optionalUser.get().getRoleId());
             loginDtoResponse.setRoleName(optionalUser.get().getRole().getRoleName());
             defaultResponse.setStatus(Boolean.TRUE);
             defaultResponse.setMessage("Succeeded Login, Hallo " + optionalUser.get().getRole().getRoleName());
@@ -76,15 +78,20 @@ public class AuthController {
             defaultResponse.setStatus(Boolean.FALSE);
             defaultResponse.setMessage("Failed to save data, data was exists");
         } else {
-            if(userRepository.findByUsername(userDtoRegister.getUsername()).isEmpty()){
-                userRepository.save(user);
-                defaultResponse.setStatus(Boolean.TRUE);
-                defaultResponse.setData(userDtoRegister);
-                defaultResponse.setMessage("Succeeded to save data, you registered as " + optionalRole.get().getRoleName() + " (Role Id : " + userDtoRegister.getRoleId() + ")");
-            }
-            else {
+            try{
+                if(userRepository.findByUsername(userDtoRegister.getUsername()).isEmpty()){
+                    userRepository.save(user);
+                    defaultResponse.setStatus(Boolean.TRUE);
+                    defaultResponse.setData(userDtoRegister);
+                    defaultResponse.setMessage("Succeeded to save data, you registered as " + optionalRole.get().getRoleName() + " (Role Id : " + userDtoRegister.getRoleId() + ")");
+                }
+                else {
+                    defaultResponse.setStatus(Boolean.FALSE);
+                    defaultResponse.setMessage("Failed to save data, username was exists. Please use other username");
+                }
+            }catch(Exception e){
                 defaultResponse.setStatus(Boolean.FALSE);
-                defaultResponse.setMessage("Failed to save data, username was exists. Please use other username");
+                defaultResponse.setMessage("Failed to save data, role for this Id still empty yet in table t_role. Please choose the others");
             }
         }
         return defaultResponse;
