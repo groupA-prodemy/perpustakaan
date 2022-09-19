@@ -15,7 +15,7 @@ public class Book {
     @Column(name = "book_title")
     private String bookTitle;
     @Column(name = "book_status")
-    private String bookStatus;
+    private Boolean bookStatus;
     @Column(name = "book_year")
     private Integer bookYear;
 
@@ -40,38 +40,6 @@ public class Book {
     @JoinColumn(name = "publisher_id",  insertable = false, updatable = false)
     private Publisher publisher;
 
-//    @Column(name = "publisher_name")
-//    private String publisherName;
-//
-//    @Column(name = "author_name")
-//    private String authorName;
-//
-//    @Column(name = "category_name")
-//    private String categoryName;
-//
-//    public String getPublisherName() {
-//        return publisherName;
-//    }
-//
-//    public void setPublisherName(String publisherName) {
-//        this.publisherName = publisherName;
-//    }
-//
-//    public String getAuthorName() {
-//        return authorName;
-//    }
-//
-//    public void setAuthorName(String authorName) {
-//        this.authorName = authorName;
-//    }
-//
-//    public String getCategoryName() {
-//        return categoryName;
-//    }
-//
-//    public void setCategoryName(String categoryName) {
-//        this.categoryName = categoryName;
-//    }
 
     public Author getAuthor() {
         return author;
@@ -113,11 +81,11 @@ public class Book {
         this.bookTitle = bookTitle;
     }
 
-    public String getBookStatus() {
+    public Boolean getBookStatus() {
         return bookStatus;
     }
 
-    public void setBookStatus(String bookStatus) {
+    public void setBookStatus(Boolean bookStatus) {
         this.bookStatus = bookStatus;
     }
 

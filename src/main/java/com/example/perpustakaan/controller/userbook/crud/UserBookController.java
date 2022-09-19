@@ -62,11 +62,11 @@ public class UserBookController {
             Optional <UserBook> optionalUserBook = userBookRepository.findByUserBookId(UserBookId);
             UserBook userBook = optionalUserBook.get();
             if (optionalUserBook.isPresent()) {
-                userBook.setIdBook(userBookDto.getIdBook());
-                userBook.setIdUser(userBookDto.getIdUser());
+                userBook.setBookId(userBookDto.getBookId());
+                userBook.setUserId(userBookDto.getUserId());
                 userBook.setStartDate(userBookDto.getStartDate());
                 userBook.setDueDate(userBookDto.getDueDate());
-                userBook.setIsReturned(userBookDto.getIsReturned());
+                userBook.setReturnDate(userBookDto.getReturnDate());
                 userBookRepository.save(userBook);
                 defaultResponse.setStatus(Boolean.TRUE);
                 defaultResponse.setData(userBookDto);

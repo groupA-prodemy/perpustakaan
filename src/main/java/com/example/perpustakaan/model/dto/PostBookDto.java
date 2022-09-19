@@ -3,7 +3,7 @@ package com.example.perpustakaan.model.dto;
 public class PostBookDto {
     private Integer bookId;
     private String bookTitle;
-    private String bookStatus;
+    private Boolean bookStatus;
     private Integer bookYear;
     private Integer authorId;
     private Integer categoryId;
@@ -25,11 +25,11 @@ public class PostBookDto {
         this.bookTitle = bookTitle;
     }
 
-    public String getBookStatus() {
+    public Boolean getBookStatus() {
         return bookStatus;
     }
 
-    public void setBookStatus(String bookStatus) {
+    public void setBookStatus(Boolean bookStatus) {
         this.bookStatus = bookStatus;
     }
 

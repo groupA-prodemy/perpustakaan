@@ -7,11 +7,16 @@ public class BookDto {
 
     private Integer bookId;
     private String bookTitle;
-    private String bookStatus;
+    private Boolean bookStatus;
     private Integer bookYear;
     private String publisherName;
     private String authorName;
     private String categoryName;
+    private Integer authorId;
+    private Integer categoryId;
+    private Integer publisherId;
+
+
 
     public String getPublisherName() {
         return publisherName;
@@ -53,11 +58,11 @@ public class BookDto {
         this.bookTitle = bookTitle;
     }
 
-    public String getBookStatus() {
+    public Boolean getBookStatus() {
         return bookStatus;
     }
 
-    public void setBookStatus(String bookStatus) {
+    public void setBookStatus(Boolean bookStatus) {
         this.bookStatus = bookStatus;
     }
 
@@ -69,4 +74,28 @@ public class BookDto {
         this.bookYear = bookYear;
     }
 
+    public Integer getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Integer getPublisherId() {
+        return publisherId;
+    }
+
+    public void setPublisherId(Integer publisherId) {
+        this.publisherId = publisherId;
+    }
 }
+

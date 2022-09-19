@@ -14,10 +14,10 @@ public class UserBook {
     private Integer userBookId;
 
     @Column(name = "id_book")
-    private Integer idBook;
+    private Integer bookId;
 
     @Column(name = "id_user")
-    private Integer idUser;
+    private Integer userId;
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_book", insertable = false, updatable = false)
@@ -36,8 +36,8 @@ public class UserBook {
     private Date dueDate;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "is_returned")
-    private Date isReturned;
+    @Column(name = "return_date")
+    private Date returnDate;
 
     public Integer getUserBookId() {
         return userBookId;
@@ -47,20 +47,20 @@ public class UserBook {
         this.userBookId = userBookId;
     }
 
-    public Integer getIdBook() {
-        return idBook;
+    public Integer getBookId() {
+        return bookId;
     }
 
-    public void setIdBook(Integer idBook) {
-        this.idBook = idBook;
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
     }
 
-    public Integer getIdUser() {
-        return idUser;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Book getBook() {
@@ -95,11 +95,11 @@ public class UserBook {
         this.dueDate = dueDate;
     }
 
-    public Date getIsReturned() {
-        return isReturned;
+    public Date getReturnDate() {
+        return returnDate;
     }
 
-    public void setIsReturned(Date isReturned) {
-        this.isReturned = isReturned;
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
     }
 }

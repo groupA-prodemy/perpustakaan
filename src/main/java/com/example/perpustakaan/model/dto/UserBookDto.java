@@ -6,14 +6,41 @@ import java.util.Date;
 
 public class UserBookDto {
 
+    private Integer userbookId;
     private String bookTitle;
     private String userName;
+    private Integer bookId;
+    private Integer userId;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd"/* HH:mm:ss*/)
     private Date startDate;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd"/* HH:mm:ss*/)
     private Date dueDate;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd"/* HH:mm:ss*/)
-    private Date isReturned;
+    private Date returnDate;
+
+    public Integer getUserbookId() {
+        return userbookId;
+    }
+
+    public void setUserbookId(Integer userbookId) {
+        this.userbookId = userbookId;
+    }
+
+    public Integer getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public String getBookTitle(String bookTitle) {
         return this.bookTitle;
@@ -47,12 +74,12 @@ public class UserBookDto {
         this.dueDate = dueDate;
     }
 
-    public Date getIsReturned() {
-        return isReturned;
+    public Date getReturnDate() {
+        return returnDate;
     }
 
-    public void setIsReturned(Date isReturned) {
-        this.isReturned = isReturned;
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
     }
 
     public String getBookTitle() {

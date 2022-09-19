@@ -6,14 +6,14 @@ import java.util.Date;
 
 public class PostUserBookDto {
     private Integer userBookId;
-    private Integer idBook;
-    private Integer idUser;
+    private Integer bookId;
+    private Integer userId;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd"/* HH:mm:ss*/)
     private Date startDate;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd"/* HH:mm:ss*/)
     private Date dueDate;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd"/* HH:mm:ss*/)
-    private Date isReturned;
+    private Date returnDate;
 
     public Integer getUserBookId() {
         return userBookId;
@@ -23,20 +23,20 @@ public class PostUserBookDto {
         this.userBookId = userBookId;
     }
 
-    public Integer getIdBook() {
-        return idBook;
+    public Integer getBookId() {
+        return bookId;
     }
 
-    public void setIdBook(Integer idBook) {
-        this.idBook = idBook;
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
     }
 
-    public Integer getIdUser() {
-        return idUser;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Date getStartDate() {
@@ -55,11 +55,11 @@ public class PostUserBookDto {
         this.dueDate = dueDate;
     }
 
-    public Date getIsReturned() {
-        return isReturned;
+    public Date getReturnDate() {
+        return returnDate;
     }
 
-    public void setIsReturned(Date isReturned) {
-        this.isReturned = isReturned;
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
     }
 }
