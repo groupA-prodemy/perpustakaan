@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins="http://localhost:8080")
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
@@ -18,7 +19,7 @@ public class CategoryController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @PostMapping("/save")
+    @PostMapping("/add")
     public DefaultResponse<CategoryDto> saveCategory(@RequestBody CategoryDto categoryDto){
         Category category = convertDtoToEntity(categoryDto);
         DefaultResponse<CategoryDto> response = new DefaultResponse();
@@ -42,7 +43,7 @@ public class CategoryController {
         return category;
     }
 
-    @GetMapping("/categorylist")
+    @GetMapping("/list")
     public List<CategoryDto> getListKategori(){
         List<CategoryDto> list = new ArrayList();
         for(Category category :categoryRepository.findAll()){
