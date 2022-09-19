@@ -5,6 +5,7 @@ public class UserDtoUpdate {
     private String name;
     private String username;
     private String password;
+    private Integer roleId;
 
 
     public String getName() {
@@ -31,4 +32,11 @@ public class UserDtoUpdate {
         this.password = password;
     }
 
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
 }

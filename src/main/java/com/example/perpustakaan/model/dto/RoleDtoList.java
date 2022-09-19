@@ -1,6 +1,6 @@
 package com.example.perpustakaan.model.dto;
 
-public class RoleDto {
+public class RoleDtoList {
     private Integer roleId;
     private String roleName;
 

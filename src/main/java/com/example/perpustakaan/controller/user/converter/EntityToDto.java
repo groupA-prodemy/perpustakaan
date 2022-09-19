@@ -19,9 +19,10 @@ public class EntityToDto {
 
     public UserDtoListUser convertEntityToDtoListUser(User user){
         UserDtoListUser userDtoListUser = new UserDtoListUser();
+        userDtoListUser.setUserId(user.getId());
         userDtoListUser.setName(user.getName());
         userDtoListUser.setUsername(user.getUsername());
-        userDtoListUser.setPassword(user.getPassword());
+        userDtoListUser.setRoleId(user.getRoleId());
         userDtoListUser.setRoleName(user.getRole().getRoleName());
 
         return userDtoListUser;

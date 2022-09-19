@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 @CrossOrigin(origins="http://localhost:8080")
 @RestController
@@ -33,10 +34,10 @@ public class UserController {
         return list;
     }
 
-    @PostMapping("/profile")
-    public DefaultResponse<UserDtoProfileUser> profile(@RequestBody UserDtoProfileUser userDtoProfileUser) {
+    @GetMapping("/profile/{username}")
+    public DefaultResponse<UserDtoProfileUser> profile(@PathVariable ("username") String username) {
         DefaultResponse<UserDtoProfileUser> defaultResponse = new DefaultResponse<>();
-        Optional<User> optionalUser = userRepository.findByIdOrUsername(userDtoProfileUser.getId(), userDtoProfileUser.getUsername());
+        Optional<User> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isEmpty()) {
             defaultResponse.setStatus(Boolean.FALSE);
             defaultResponse.setMessage("Data wasn't found");
@@ -51,9 +52,9 @@ public class UserController {
     @DeleteMapping("/delete/{id}")
     public DefaultResponse deleteById(@PathVariable("id") Integer id) {
         DefaultResponse defaultResponse = new DefaultResponse();
-        Optional<User> optionalAdmin = userRepository.findById(id);
-        if (optionalAdmin.isPresent()) {
-            userRepository.delete(optionalAdmin.get());
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            userRepository.delete(optionalUser.get());
             defaultResponse.setStatus(Boolean.TRUE);
             defaultResponse.setMessage("Succeeded delete data");
         } else {
@@ -69,14 +70,42 @@ public class UserController {
         try {
             Optional<User> optionalUser = userRepository.findById(id);
             User user = optionalUser.get();
+            Optional<User> optionalUserUsername = userRepository.findByUsername(userDtoUpdate.getUsername());
             if (optionalUser.isPresent()) {
                 user.setName(userDtoUpdate.getName());
-                user.setUsername(userDtoUpdate.getUsername());
-                user.setPassword(userDtoUpdate.getPassword());
-                userRepository.save(user);
-                defaultResponse.setStatus(Boolean.TRUE);
-                defaultResponse.setData(userDtoUpdate);
-                defaultResponse.setMessage("Succeeded update data");
+                if(optionalUserUsername.isPresent()){
+                    if(Objects.equals(user.getUsername(), userDtoUpdate.getUsername())){
+                        user.setUsername(userDtoUpdate.getUsername());
+                        user.setPassword(userDtoUpdate.getPassword());
+                        user.setRoleId(userDtoUpdate.getRoleId());
+                        try{
+                            userRepository.save(user);
+                            defaultResponse.setStatus(Boolean.TRUE);
+                            defaultResponse.setData(userDtoUpdate);
+                            defaultResponse.setMessage("Succeeded update data");
+                        }catch(Exception e){
+                            defaultResponse.setStatus(Boolean.FALSE);
+                            defaultResponse.setMessage("Failed to update data, Role Id still empty yet in database. Please choose one others");
+                        }
+                    }
+                    else {
+                        defaultResponse.setStatus(Boolean.FALSE);
+                        defaultResponse.setMessage("Failed to update data, Username was exists. Use the other one");
+                    }
+                }else {
+                    user.setUsername(userDtoUpdate.getUsername());
+                    user.setPassword(userDtoUpdate.getPassword());
+                    user.setRoleId(userDtoUpdate.getRoleId());
+                    try{
+                        userRepository.save(user);
+                        defaultResponse.setStatus(Boolean.TRUE);
+                        defaultResponse.setData(userDtoUpdate);
+                        defaultResponse.setMessage("Succeeded update data");
+                    }catch(Exception e){
+                        defaultResponse.setStatus(Boolean.FALSE);
+                        defaultResponse.setMessage("Failed to update data, Role Id still empty yet in database. Please choose one others");
+                    }
+                }
             }
         } catch (Exception e) {
             defaultResponse.setStatus(Boolean.FALSE);

@@ -2,11 +2,19 @@ package com.example.perpustakaan.model.dto;
 
 public class UserDtoListUser {
 
+    private Integer userId;
     private String name;
     private String username;
-    private String password;
+    private Integer roleId;
     private String roleName;
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public String getName() {
         return name;
@@ -24,12 +32,12 @@ public class UserDtoListUser {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
     public String getRoleName() {
