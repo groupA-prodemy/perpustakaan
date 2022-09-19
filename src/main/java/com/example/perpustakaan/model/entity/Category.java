@@ -1,14 +1,12 @@
 package com.example.perpustakaan.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "t_category")
 public class Category {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_category")
     @Column(name = "category_id")
     private Integer categoryID;
     @Column (name = "category_name")

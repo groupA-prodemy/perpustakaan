@@ -23,7 +23,7 @@ public class CategoryController {
     public DefaultResponse<CategoryDto> saveCategory(@RequestBody CategoryDto categoryDto){
         Category category = convertDtoToEntity(categoryDto);
         DefaultResponse<CategoryDto> response = new DefaultResponse();
-        Optional<Category> optional = categoryRepository.findById(categoryDto.getCategoryId());
+        Optional<Category> optional = categoryRepository.findByCategoryName(categoryDto.getCategoryName());
         if(optional.isPresent()){
             response.setStatus(Boolean.FALSE);
             response.setMessage("Error, Data Sudah Tersedia");
@@ -37,7 +37,6 @@ public class CategoryController {
     }
     public Category convertDtoToEntity(CategoryDto dto){
         Category category = new Category();
-        category.setCategoryID(dto.getCategoryId());
         category.setCategoryName(dto.getCategoryName());
 
         return category;
