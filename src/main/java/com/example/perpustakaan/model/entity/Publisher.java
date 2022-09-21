@@ -8,10 +8,10 @@ import javax.persistence.*;
 public class Publisher {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_user")
     @Column(name = "id_publisher")
     private Integer idPublisher;
-    @Column(name = "name_publisher")
+    @Column(name = "name_publisher", unique = true)
     private String publisherName;
     @Column(name = "address_publisher")
     private String addressPublisher;
