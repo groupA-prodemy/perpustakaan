@@ -54,10 +54,10 @@ public class AuthController {
         return defaultResponse;
     }
 
-    @PostMapping("/logout")
-    public DefaultResponse LogoutUser(@RequestBody LoginDto loginDto){
+    @PostMapping("/logout/{userId}")
+    public DefaultResponse LogoutUser(@RequestParam ("userId") Integer userId){
         DefaultResponse defaultResponse = new DefaultResponse();
-        Optional<User> optionalUser = userRepository.findByUsernameAndPassword(loginDto.getUsername(), loginDto.getPassword());
+        Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()){
             defaultResponse.setStatus(Boolean.TRUE);
             defaultResponse.setMessage("Succeeded Logout");
