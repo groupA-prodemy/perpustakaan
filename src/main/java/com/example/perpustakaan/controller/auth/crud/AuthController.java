@@ -55,7 +55,7 @@ public class AuthController {
     }
 
     @PostMapping("/logout/{userId}")
-    public DefaultResponse LogoutUser(@RequestParam ("userId") Integer userId){
+    public DefaultResponse LogoutUser(@PathVariable ("userId") Integer userId){
         DefaultResponse defaultResponse = new DefaultResponse();
         Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()){
