@@ -23,23 +23,23 @@ public class PublisherController {
     @PostMapping("/save")
     public DefaultResponse<PublisherDto> savepublisher(@RequestBody PublisherDto publisherDto){
         Publisher publisher = convertDtoToEntity(publisherDto);
-        DefaultResponse<PublisherDto> response = new DefaultResponse();
-        try {
-            Optional<Publisher> optional = publisherRepository.findById(publisherDto.getIdPublisher());
-            if(optional.isPresent()){
-                response.setStatus(Boolean.FALSE);
-                response.setMessage("Error, Data Sudah Tersedia");
-            }
-        } catch (Exception e){
+        DefaultResponse<PublisherDto> response = new DefaultResponse<>();
+        Optional<Publisher> optional = publisherRepository.findByPublisherName(publisherDto.getPublisherName());
+        if(optional.isPresent()){
+            response.setStatus(Boolean.FALSE);
+            response.setMessage("Error, Data Sudah Tersedia");
+        } else {
             publisherRepository.save(publisher);
+//            addressRepository.save(address);
             response.setStatus(Boolean.TRUE);
             response.setData(publisherDto);
             response.setMessage("Berhasil Simpan Data");
-
         }
 
         return response;
     }
+
+
 
     public Publisher convertDtoToEntity(PublisherDto dto){
         Publisher publisher = new Publisher();

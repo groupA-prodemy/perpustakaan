@@ -47,6 +47,15 @@ public class AuthorController {
         return list;
     }
 
+    @GetMapping("/{authorId}") // buat filter sesuai tipe produk tapi cuma satu
+    public List<AuthorDto> getById(@PathVariable Integer authorId) {
+        List<AuthorDto> list = new ArrayList<>();
+        Optional<Author> productOptional = authorRepository.findByAuthorId(authorId);
+        list.add(convertEntitytoDto(productOptional.get()));
+
+        return list;
+    }
+
     @DeleteMapping("/delete/{authorid}")
     public DefaultResponse deleteByAuthorId (@PathVariable Integer authorid){
         DefaultResponse df = new DefaultResponse();
