@@ -29,7 +29,7 @@ public class UserBookController {
     DtoToEntity dtoToEntity = new DtoToEntity();
     EntityToDto entityToDto = new EntityToDto();
 
-    @GetMapping("/list-userbook")
+    @GetMapping("/list-userbook/list")
     public List<UserBookDto> getListUserBook() {
         List <UserBookDto> list = new ArrayList<>();
         for (UserBook u : userBookRepository.findAll()) {
