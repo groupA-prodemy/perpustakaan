@@ -6,6 +6,7 @@ public class UserDtoProfileUser {
     private String name;
     private String username;
     private String password;
+    private Integer roleId;
     private String roleName;
 
     public Integer getId() {
@@ -38,6 +39,14 @@ public class UserDtoProfileUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
     public String getRoleName() {

@@ -34,6 +34,7 @@ public class EntityToDto {
         userDtoProfileUserUser.setName(user.getName());
         userDtoProfileUserUser.setUsername(user.getUsername());
         userDtoProfileUserUser.setPassword(user.getPassword());
+        userDtoProfileUserUser.setRoleId(user.getRoleId());
         userDtoProfileUserUser.setRoleName(user.getRole().getRoleName());
 
         return userDtoProfileUserUser;
