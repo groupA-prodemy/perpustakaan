@@ -38,6 +38,22 @@ public class UserBookController {
         return list;
     }
 
+    @GetMapping("/{userbookId}")
+    public DefaultResponse<UserBookDto> getById(@PathVariable Integer userbookId) {
+        DefaultResponse<UserBookDto> defaultResponse = new DefaultResponse<>();
+        Optional<UserBook> optionalBook = userBookRepository.findByUserBookId(userbookId);
+        if (optionalBook.isEmpty()) {
+            defaultResponse.setStatus(Boolean.FALSE);
+            defaultResponse.setMessage("ID Yang Dimasukkan Salah");
+        } else {
+            defaultResponse.setStatus(Boolean.TRUE);
+            defaultResponse.setMessage("Selamat Melihat Data Berikut");
+            defaultResponse.setData(entityToDto.convertEntityToDto(optionalBook.get()));
+        }
+
+        return defaultResponse;
+    }
+
     @PostMapping("/add-userbook")
     public DefaultResponse<PostUserBookDto> addUserBook (@RequestBody PostUserBookDto userBookDto) {
         UserBook userBook = dtoToEntity.convertDtoToEntity(userBookDto);
