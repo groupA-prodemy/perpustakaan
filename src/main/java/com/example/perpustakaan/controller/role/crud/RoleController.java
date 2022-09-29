@@ -37,8 +37,8 @@ public class RoleController {
         return list;
     }
 
-    @GetMapping("/idRole")
-    public DefaultResponse<RoleDtoList> profile(@PathVariable ("idRole") Integer idRole) {
+    @GetMapping("/{idRole}")
+    public DefaultResponse<RoleDtoList> getByIdRole(@PathVariable Integer idRole) {
         DefaultResponse<RoleDtoList> defaultResponse = new DefaultResponse<>();
         Optional<Role> optionalRole = roleRepository.findById(idRole);
         if (optionalRole.isEmpty()) {
