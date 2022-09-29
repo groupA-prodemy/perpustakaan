@@ -1,7 +1,9 @@
 package com.example.perpustakaan.controller.publisher;
 
 import com.example.perpustakaan.model.dto.DefaultResponse;
+import com.example.perpustakaan.model.dto.author.AuthorDto;
 import com.example.perpustakaan.model.dto.publisher.PublisherDto;
+import com.example.perpustakaan.model.entity.Author;
 import com.example.perpustakaan.model.entity.Publisher;
 import com.example.perpustakaan.repository.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +70,24 @@ public class PublisherController {
         return dto;
     }
 
+    @GetMapping("/{idPublisher}")
+    public List<PublisherDto> getById(@PathVariable Integer idPublisher) {
+        List<PublisherDto> list = new ArrayList<>();
+        Optional<Publisher> productOptional = publisherRepository.findById(idPublisher);
+        list.add(convertEntitytoDto(productOptional.get()));
+
+        return list;
+    }
+
+    private PublisherDto convertEntitytoDto(Publisher entity) {
+
+        PublisherDto dto = new PublisherDto();
+        dto.setIdPublisher(entity.getIdPublisher());
+        dto.setPublisherName(entity.getPublisherName());
+        dto.setAddressPublisher(entity.getAddressPublisher());
+
+        return dto;
+    }
     @PutMapping("/update/{id}")
     public DefaultResponse updateById (@PathVariable Integer id, @RequestBody PublisherDto publisherDto){
         DefaultResponse defaultResponse = new DefaultResponse();
