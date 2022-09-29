@@ -1,6 +1,7 @@
 package com.example.perpustakaan.controller.book.crud;
 
 import com.example.perpustakaan.model.dto.book.PostBookDto;
+import com.example.perpustakaan.model.entity.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins="http://localhost:8080")
+//@CrossOrigin(origins="http://localhost:8080")
 @RestController
 @RequestMapping("/book")
 public class BookController {
@@ -37,6 +38,22 @@ public class BookController {
            list.add(entityToDto.convertEntityToDto(p));
        }
         return list;
+    }
+
+    @GetMapping("/{bookId}")
+    public DefaultResponse<BookDto> getById(@PathVariable Integer bookId) {
+        DefaultResponse<BookDto> defaultResponse = new DefaultResponse<>();
+        Optional<Book> optionalBook = bookRepository.findByBookId(bookId);
+        if (optionalBook.isEmpty()) {
+            defaultResponse.setStatus(Boolean.FALSE);
+            defaultResponse.setMessage("ID Yang Dimasukkan Salah");
+        } else {
+            defaultResponse.setStatus(Boolean.TRUE);
+            defaultResponse.setMessage("Selamat Melihat Data Berikut");
+            defaultResponse.setData(entityToDto.convertEntityToDto(optionalBook.get()));
+        }
+
+        return defaultResponse;
     }
 
     @PostMapping("/add-book")
