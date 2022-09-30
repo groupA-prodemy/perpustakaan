@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins="https://be-library-mini-system.herokuapp.com")
+@CrossOrigin(origins="http://localhost:8080")
 @RestController
 @RequestMapping("/author")
 public class AuthorController {
