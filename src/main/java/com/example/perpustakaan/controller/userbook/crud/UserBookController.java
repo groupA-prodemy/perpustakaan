@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "https://be-library-mini-system.herokuapp.com")
 @RestController
 @RequestMapping("/userbook")
 public class UserBookController {
