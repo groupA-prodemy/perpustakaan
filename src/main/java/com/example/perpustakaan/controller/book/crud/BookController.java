@@ -16,11 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-<<<<<<< HEAD
-@CrossOrigin(origins="http://localhost:8080")
-=======
+
 @CrossOrigin(origins = "http://localhost:8080")
->>>>>>> 8d83c1c5a501861e9925d0f576f4b2eed2df72eb
+
 @RestController
 @RequestMapping("/book")
 public class BookController {
