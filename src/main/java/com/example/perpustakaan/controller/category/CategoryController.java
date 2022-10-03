@@ -51,6 +51,21 @@ public class CategoryController {
         return list;
     }
 
+    @GetMapping("/list/{categoryId}")
+    public DefaultResponse<CategoryDto> getListKategori(@PathVariable Integer categoryId){
+        DefaultResponse<CategoryDto> df = new DefaultResponse<>();
+        Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
+        if (optionalCategory.isEmpty()) {
+            df.setStatus(Boolean.FALSE);
+            df.setMessage("Data wasn't found");
+        } else {
+            df.setStatus(Boolean.TRUE);
+            df.setData(convertEntityToDto(optionalCategory.get()));
+            df.setMessage("Data was found");
+        }
+        return df;
+    }
+
     public CategoryDto convertEntityToDto(Category entity){
         CategoryDto dto = new CategoryDto();
         dto.setCategoryId(entity.getCategoryID());

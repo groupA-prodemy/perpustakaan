@@ -5,7 +5,9 @@ import com.example.perpustakaan.controller.role.converter.EntityToDto;
 import com.example.perpustakaan.model.dto.DefaultResponse;
 import com.example.perpustakaan.model.dto.role.RoleDtoList;
 import com.example.perpustakaan.model.dto.role.RoleDtoSave;
+import com.example.perpustakaan.model.dto.user.UserDtoProfileUser;
 import com.example.perpustakaan.model.entity.Role;
+import com.example.perpustakaan.model.entity.User;
 import com.example.perpustakaan.repository.RoleRepository;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +35,21 @@ public class RoleController {
             list.add(entityToDto.convertEntityToDto(i));
         }
         return list;
+    }
+
+    @GetMapping("/{idRole}")
+    public DefaultResponse<RoleDtoList> getByIdRole(@PathVariable Integer idRole) {
+        DefaultResponse<RoleDtoList> defaultResponse = new DefaultResponse<>();
+        Optional<Role> optionalRole = roleRepository.findById(idRole);
+        if (optionalRole.isEmpty()) {
+            defaultResponse.setStatus(Boolean.FALSE);
+            defaultResponse.setMessage("Data wasn't found");
+        } else {
+            defaultResponse.setStatus(Boolean.TRUE);
+            defaultResponse.setData(entityToDto.convertEntityToDto(optionalRole.get()));
+            defaultResponse.setMessage("Data was found");
+        }
+        return defaultResponse;
     }
 
     @PostMapping("/save-role")
