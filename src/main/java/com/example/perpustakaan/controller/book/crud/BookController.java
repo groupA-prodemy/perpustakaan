@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-@CrossOrigin
+@CrossOrigin(origins="http://localhost:8080")
 @RestController
 @RequestMapping("/book")
 public class BookController {
