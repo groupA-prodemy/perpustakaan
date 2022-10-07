@@ -80,7 +80,7 @@ public class AuthorController {
             if (optionalAuthor.isPresent()){
                 author.setAuthorName(authorDto.getAuthorName());
                 author.setAuthorAddress(authorDto.getAuthorAddress());
-                author.setNoHp(author.getNoHp());
+                author.setNoHp(authorDto.getNoHp());
                 authorRepository.save(author);
                 defaultResponse.setStatus(Boolean.TRUE);
                 defaultResponse.setData(authorDto);
