@@ -103,8 +103,13 @@ public class PublisherController {
                 defaultResponse.setMessage("Succeeded update data");
             }
         }catch(Exception e){
+            Optional<Publisher> optionalPublisher1 = publisherRepository.findByPublisherName(publisherDto.getPublisherName());
             defaultResponse.setStatus(Boolean.FALSE);
-            defaultResponse.setMessage("Failed to update data, Id was not found");
+            if (optionalPublisher1.isPresent()){
+                defaultResponse.setMessage("Error, Data Sudah Tersedia");
+            } else {
+                defaultResponse.setMessage("Failed to update data, Id was not found");
+            }
         }
         return defaultResponse;
     }
