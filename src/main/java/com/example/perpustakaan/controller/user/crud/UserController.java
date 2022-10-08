@@ -56,13 +56,18 @@ public class UserController {
     public DefaultResponse deleteById(@PathVariable("id") Integer id) {
         DefaultResponse defaultResponse = new DefaultResponse();
         Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            userRepository.delete(optionalUser.get());
-            defaultResponse.setStatus(Boolean.TRUE);
-            defaultResponse.setMessage("Succeeded delete data");
-        } else {
+        try{
+            if (optionalUser.isPresent()) {
+                userRepository.delete(optionalUser.get());
+                defaultResponse.setStatus(Boolean.TRUE);
+                defaultResponse.setMessage("Succeeded delete data");
+            } else {
+                defaultResponse.setStatus(Boolean.FALSE);
+                defaultResponse.setMessage("Failed to delete data, data was not found");
+            }
+        }catch(Exception e){
             defaultResponse.setStatus(Boolean.FALSE);
-            defaultResponse.setMessage("Failed to delete data, data was not found");
+            defaultResponse.setMessage("Delete Failed!!! This data was referenced in user book list, delete them before delete this.");
         }
         return defaultResponse;
     }
