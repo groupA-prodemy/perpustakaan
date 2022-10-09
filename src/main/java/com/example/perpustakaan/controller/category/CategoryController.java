@@ -78,13 +78,18 @@ public class CategoryController {
     public DefaultResponse deleteById(@PathVariable("categoryId") Integer idKategori) {
         DefaultResponse df = new DefaultResponse();
         Optional<Category> optionalKategori =categoryRepository.findById(idKategori);
-        if (optionalKategori.isPresent()){
-            categoryRepository.delete(optionalKategori.get());
-            df.setStatus(Boolean.TRUE);
-            df.setMessage("Data Berhasil Dihapus");
-        } else {
+        try{
+            if (optionalKategori.isPresent()){
+                categoryRepository.delete(optionalKategori.get());
+                df.setStatus(Boolean.TRUE);
+                df.setMessage("Succeeded delete data");
+            } else {
+                df.setStatus(Boolean.FALSE);
+                df.setMessage("Failed to delete data, data was not found");
+            }
+        }catch (Exception e){
             df.setStatus(Boolean.FALSE);
-            df.setMessage("Data Tidak Ditemukan");
+            df.setMessage("Failed to delete data. Your data was referenced by booklist. Change that before you want to delete this data");;
         }
         return df;
     }
