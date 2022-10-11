@@ -52,6 +52,21 @@ public class UserController {
         return defaultResponse;
     }
 
+    @GetMapping("/profile/{userId}")
+    public DefaultResponse<UserDtoProfileUser> profile(@PathVariable ("userId") Integer userId) {
+        DefaultResponse<UserDtoProfileUser> defaultResponse = new DefaultResponse<>();
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isEmpty()) {
+            defaultResponse.setStatus(Boolean.FALSE);
+            defaultResponse.setMessage("Data wasn't found");
+        } else {
+            defaultResponse.setStatus(Boolean.TRUE);
+            defaultResponse.setData(entityToDto.convertEntityToDtoProfileUser(optionalUser.get()));
+            defaultResponse.setMessage("Data was found");
+        }
+        return defaultResponse;
+    }
+
     @DeleteMapping("/delete/{id}")
     public DefaultResponse deleteById(@PathVariable("id") Integer id) {
         DefaultResponse defaultResponse = new DefaultResponse();
